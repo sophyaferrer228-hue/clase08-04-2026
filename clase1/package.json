@@ -1,0 +1,15 @@
+{
+  "name": "clase1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "leerAPI": "node leerAPI.js",
+    "escribirAPI": "node escribirAPI.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}

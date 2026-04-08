@@ -1,3 +1,3 @@
-# repositorio delo trabajado en clase
+# repositorio de lo trabajado en clase
 
 las clases en distintas carpetas
