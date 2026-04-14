@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "dev": "node index.mjs",
-    "funciones": "node funciones.mjs"
+    "dev": "node index.mjs"
   },
   "keywords": [],
   "author": "",
