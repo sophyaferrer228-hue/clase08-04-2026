@@ -1,0 +1,25 @@
+###
+#get - ies
+
+get https://ies21.edu.ar/carreras
+
+###
+# get - rest api
+
+get https://api.escuelajs.co/api/v1/users
+
+###
+# get http://localhost:3000
+get http://localhost:3000/suma
+
+###
+# get http://localhost:3000/proceso-formulario
+
+get http://localhost:3000/proceso-formulario
+
+###
+#post - localhost:3000
+http://localhost:3000/guardar-datos
+
+
+
