@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ofertas y Procedimientos</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .card { background: white; padding: 20px; margin: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 400px; }
+        .promo-card { background: #fff3cd; border: 1px solid #ffeeba; }
+        button { padding: 12px 24px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 10px 0; }
+        button:hover { background: #219150; }
+        a { color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Procedimiento de Descuentos</h1>
+    
+    <div class="card">
+        <p>Este procedimiento aplica automáticamente un descuento del 20% a todos los productos de la marca <strong>Dior</strong>.</p>
+        <button id="btnEjecutar">Ejecutar Descuentos</button>
+        <div id="mensaje-estado"></div>
+    </div>
+
+    <h1>Ofertas Disponibles</h1>
+    <div id="contenedor-ofertas">Hacé clic en el botón para ver las ofertas actualizadas.</div>
+    
+    <br>
+    <a href="index.html">Volver al panel</a>
+
+    <script>
+        document.getElementById('btnEjecutar').addEventListener('click', () => {
+            const divRes = document.getElementById('mensaje-estado')
+            const contenedor = document.getElementById('contenedor-ofertas')
+            
+            divRes.innerText = "Procesando..."
+            
+            fetch('/api/v1/proceso/oferta')
+                .then(res => res.json())
+                .then(data => {
+                    // Mostramos el mensaje de éxito
+                    divRes.innerHTML = `<p style="color: green;">✅ ${data.mensaje} (Productos: ${data.cantidad})</p>`
+                    
+                    // Renderizamos las ofertas en el contenedor
+                    contenedor.innerHTML = ''
+                    data.resultados.forEach(p => {
+                        contenedor.innerHTML += `
+                            <div class="card promo-card">
+                                <h3>${p.nombre}</h3>
+                                <p>Precio con descuento: $${p.precio}</p>
+                            </div>
+                        `
+                    })
+                })
+                .catch(err => {
+                    divRes.innerHTML = `<p style="color: red;">❌ Error al ejecutar el procedimiento.</p>`
+                })
+        })
+    </script>
+</body>
+</html>

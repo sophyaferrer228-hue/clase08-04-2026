@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        a { color: #3498db; text-decoration: none; margin-top: 15px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Detalle del Perfume</h1>
+    <div id="detalle" class="card">Cargando...</div>
+    <a href="productos.html">Volver al listado</a>
+
+    <script>
+        const id = new URLSearchParams(window.location.search).get('id')
+        fetch('/api/v1/productos/' + id)
+            .then(res => res.json())
+            .then(p => {
+                document.getElementById('detalle').innerHTML = `
+                    <h3>${p.nombre}</h3>
+                    <p>Marca: ${p.marca}</p>
+                    <p>Precio: $${p.precio}</p>
+                `
+            })
+    </script>
+</body>
+</html>

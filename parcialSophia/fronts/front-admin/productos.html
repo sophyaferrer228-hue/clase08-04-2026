@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .card { background: white; padding: 20px; margin: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; }
+        a { color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Productos</h1>
+    <div id="contenedor-productos">Cargando...</div>
+    <a href="index.html">Volver al panel</a>
+
+    <script>
+        fetch('/api/v1/productos')
+            .then(res => res.status === 403 ? window.location.href = '/login' : res.json())
+            .then(data => {
+                console.log("Lo que llega del back:", data); // Mira esto en la consola del navegador (F12)
+                const contenedor = document.getElementById('contenedor-productos')
+                contenedor.innerHTML = ''
+                data.forEach(p => {
+                    contenedor.innerHTML += `
+                        <div class="card">
+                            <h3>${p.nombre}</h3>
+                            <a href="perfumesId.html?id=${p.id}">Ver detalles</a>
+                        </div>
+                    `
+                })
+            })
+    </script>
+</body>
+</html>
